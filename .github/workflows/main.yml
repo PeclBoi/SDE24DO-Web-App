@@ -51,7 +51,7 @@ jobs:
         
   audit:
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release') && github.event.pull_request.merged == true
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release'
       
     steps:
       - name: Checkout Repository
