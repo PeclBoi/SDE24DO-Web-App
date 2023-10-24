@@ -11,8 +11,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    env:
-      working-directory: web-app/blog
       
     steps:
       - name: Checkout Repository
@@ -24,37 +22,36 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
+        working-directory: web-app/blog
         run: npm install
 
       - name: Run Linting
+        working-directory: web-app/blog
         run: npm run lint
 
   build:
     runs-on: ubuntu-latest
-    env:
-      working-directory: web-app/blog
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
 
       - name: Install Dependencies
+        working-directory: web-app/blog
         run: npm install
-
+        
       - name: Build Application
+        working-directory: web-app/blog
         run: npm run build
-
+        
   audit:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release') && github.event.pull_request.merged == true
-    
-    env:
-      working-directory: web-app/blog
       
     steps:
       - name: Checkout Repository
@@ -66,8 +63,9 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        working-directory: ./blog
+        working-directory: web-app/blog
         run: npm install
 
       - name: Audit Dependencies
+        working-directory: web-app/blog
         run: npm audit
