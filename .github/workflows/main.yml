@@ -41,7 +41,7 @@ jobs:
           node-version: '18'
 
       - name: Install Dependencies
-        working-directory: ./blog
+        working-directory: web-app/blog
         run: npm install
 
       - name: Build Application
